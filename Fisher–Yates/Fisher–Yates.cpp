@@ -11,24 +11,24 @@ void InitRand()
 int main()
 {
 	int array[] = { 10, 20, 30, 40, 50 };
-	int randarray[sizeof array / sizeof * array];
 	int size = sizeof array / sizeof *array;
-	int arraysize;
+	int randarray;
 	int random;
+	int keep;
 
 	InitRand();
 
-	for (int i = 0; i < size; i++)
+	for (int i = size; i > 1; i--)
 	{
-		arraysize = size - i;
-		random = rand() % arraysize;
-		randarray[i] = array[random];
-		array[random] = array[arraysize - 1];
+		randarray = rand() % (i - 1);
+		keep = array[i - 1];
+		array[i - 1] = array[randarray];
+		array[randarray] = keep;
 	}
 
 	for (int i = 0; i < size; i++)
 	{
-		cout << randarray[i] << endl;
+		cout << array[i] << endl;
 	}
 	
 }
